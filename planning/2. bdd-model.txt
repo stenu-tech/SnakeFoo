@@ -1,0 +1,85 @@
+Feature: Classic Game of Snake
+Background
+The Snake game is a classic video game that has been popular since the 1970s and 1980s. It involves controlling a snake that grows in length as it consumes food, with the goal being to avoid collisions with walls or the snake's own body. The game is known for its simplicity and increasing challenge as the snake grows.
+
+Scenario 1: Starting the Game
+Given the player opens the Snake game,
+When the game starts,
+Then the snake should appear on the screen with a default length,
+And the game board should display an empty grid with no obstacles,
+And a piece of food should appear randomly on the grid.
+Scenario 2: Controlling the Snake
+Given the snake is visible on the screen,
+When the player presses the directional controls (up, down, left, right),
+Then the snake's head should move in the direction of the last input,
+And the snake’s body should follow the movement of the head.
+Scenario 3: Snake Consumes Food
+Given the snake is moving on the grid,
+And there is food on the grid,
+When the snake’s head reaches the food,
+Then the snake should consume the food,
+And the snake should grow by one unit in length,
+And a new piece of food should appear randomly on the grid,
+And the player's score should increase.
+Scenario 4: Snake Collides with Wall or Itself
+Given the snake is moving on the grid,
+When the snake’s head collides with the wall or its own body,
+Then the game should end,
+And the final score should be displayed to the player,
+And the player should be given the option to restart the game.
+Scenario 5: Increasing Difficulty
+Given the snake has grown in length after consuming food,
+When the available space on the grid decreases due to the snake’s length,
+Then the game should become more challenging,
+And the player should need to strategize movement to avoid collisions.
+Scenario 6: Game Over Feedback
+Given the player has lost the game,
+When the game over screen is displayed,
+Then the player should see their final score,
+And the option to restart the game should be clearly presented.
+Scenario 7: Historical Evolution
+Given different versions of Snake exist across various platforms,
+When a player plays any version of Snake,
+Then the core gameplay should remain consistent,
+And the snake should grow by consuming food,
+And the game should end upon collision with the wall or itself.
+Scenario 8: Modern Adaptations
+Given the game is adapted for modern platforms,
+When Snake is played on smartphones, web browsers, or social media,
+Then the game should feature enhanced graphics,
+And may include new gameplay modes such as multiplayer,
+And may offer additional power-ups that add complexity.
+Scenario 9: Multiplayer Functionality
+Given the game supports multiplayer functionality,
+When multiple players start a game session,
+Then each player should control a separate snake,
+And the game should ensure synchronization across all players,
+And the gameplay should remain smooth and responsive.
+Scenario 10: AI and Machine Learning
+Given the game includes AI or machine learning elements,
+When the player’s performance is analyzed,
+Then the game difficulty should adapt to the player’s skill level,
+And the AI should present increasingly challenging scenarios.
+Scenario 11: Augmented Reality (AR) Integration
+Given the game is played with AR technology,
+When the player initiates an AR session,
+Then the snake should appear in the player’s physical environment,
+And the player should control the snake through physical movements,
+And the gameplay should provide an immersive experience.
+Scenario 12: Procedural Generation
+Given the game uses procedural generation,
+When a new game session starts,
+Then the levels or challenges should be generated uniquely each time,
+And the game should offer fresh experiences in every playthrough.
+Scenario 13: Educational Use
+Given the game is adapted for educational purposes,
+When the player engages with the educational version,
+Then the game should teach concepts such as programming, logic, or problem-solving,
+And the game should include gamification elements like levels and achievements.
+Scenario 14: Player Feedback Loop
+Given the player is actively playing the game,
+When the snake consumes food or the game ends,
+Then the game should provide immediate visual feedback,
+And update the score in real-time,
+And create a compelling feedback loop to engage the player.
+This BDD model outlines the key features and scenarios of the classic Snake game, reflecting its gameplay mechanics, design principles, and potential modern enhancements. Each scenario provides clear criteria for ensuring that the game meets the expectations for a classic yet modernized version of Snake.
