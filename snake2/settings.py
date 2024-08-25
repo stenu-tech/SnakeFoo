@@ -5,7 +5,7 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Firebase Admin SDK Configuration
-FIREBASE_ADMIN_CREDENTIALS = '/home/runner/work/Snake2/Snake2/firebase-adminsdk.json'
+FIREBASE_ADMIN_CREDENTIALS = settings.FIREBASE_ADMIN_CREDENTIALS
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
