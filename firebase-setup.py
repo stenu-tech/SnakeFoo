@@ -1,8 +1,13 @@
 import firebase_admin
 from firebase_admin import credentials, firestore
+import os
+
 
 # Path to your service account key file
-cred = credentials.Certificate('my-awesome-portfolio-pro-55988-firebase-adminsdk-vgp73-d698ccf7fd.json')
+cred_path = os.getenv('FIREBASE_ADMIN_CREDENTIALS_PATH')
+if not cred_path:
+    raise ValueError("The environment variable FIREBASE_ADMIN_CREDENTIALS_PATH is not set.")
+cred = credentials.Certificate(cred_path)
 firebase_admin.initialize_app(cred)
 
 # Initialize Firestore
