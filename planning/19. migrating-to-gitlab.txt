@@ -1,0 +1,45 @@
+Check Current Git Configuration for Credential Helper
+To see which credential helper is currently configured, run:
+
+bash
+Copy code
+git config --global credential.helper
+Fixing the Configuration
+If you want to use manager-core (the more secure option):
+
+Remove the store configuration:
+
+bash
+Copy code
+git config --global --unset credential.helper
+Set manager-core again:
+
+bash
+Copy code
+git config --global credential.helper manager-core
+If Using Credential Store:
+If you prefer to use store, you should have a .git-credentials file in your home directory after running the store command. This file will contain your credentials in plain text:
+
+Set credentials using the store method:
+
+bash
+Copy code
+git config --global credential.helper store
+Push Your Changes:
+
+The next time you push, Git will prompt you for your username and password or token once, then save it to .git-credentials. After that, it will not prompt you again:
+
+bash
+Copy code
+git push gitlab main
+When you do this, Git will save your credentials in plain text to ~/.git-credentials. This method is less secure but will work if the credential manager is not an option.
+
+Test the Configuration
+After setting up the correct credential helper:
+
+Try to push again:
+
+bash
+Copy code
+git push gitlab main
+If everything is set up correctly, Git should no longer prompt you for credentials, and your push will proceed without issue.

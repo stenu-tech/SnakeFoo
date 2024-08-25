@@ -1,0 +1,35 @@
+stages:
+  - build
+
+variables:
+  # Ensure no newline or space in DOCKER_HUB_USERNAME and DOCKER_IMAGE_NAME
+  DOCKER_IMAGE_NAME: "${DOCKER_HUB_USERNAME%%[[:space:]]}/snake2:${CI_COMMIT_REF_SLUG}"
+
+docker-build:
+  image: docker:latest
+  stage: build
+  services:
+    - docker:dind
+  before_script:
+    # Ensure no trailing newlines or spaces
+    - export DOCKER_HUB_USERNAME=$(echo "$DOCKER_HUB_USERNAME" | tr -d '\n' | tr -d '\r')
+    # Debugging: Print the Docker Hub username and image name
+    # Login to Docker Hub
+    - echo "$DOCKER_HUB_ACCESS_TOKEN" | docker login -u "$DOCKER_HUB_USERNAME" --password-stdin
+  script:
+    # Debugging: Print the Docker Hub username and image name again before building
+    # Check if DOCKER_HUB_USERNAME is empty
+    - if [ -z "$DOCKER_HUB_USERNAME" ]; then echo "DOCKER_HUB_USERNAME is empty"; exit 1; fi
+    # Build and push the Docker image to Docker Hub
+    - docker build --pull -t "$DOCKER_IMAGE_NAME" .
+    - docker push "$DOCKER_IMAGE_NAME"
+    - |
+      if [[ "$CI_COMMIT_BRANCH" == "$CI_DEFAULT_BRANCH" ]]; then
+        # Tag the Docker image as 'latest' if on the default branch
+        docker tag "$DOCKER_IMAGE_NAME" "$DOCKER_HUB_USERNAME/snake2:latest"
+        docker push "$DOCKER_HUB_USERNAME/snake2:latest"
+      fi
+  rules:
+    - if: $CI_COMMIT_BRANCH
+      exists:
+        - Dockerfile
