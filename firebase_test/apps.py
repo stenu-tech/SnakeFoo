@@ -1,7 +1,6 @@
 from django.apps import AppConfig
 import firebase_admin
 from firebase_admin import credentials, initialize_app
-from django.conf import settings
 import os
 import json
 
@@ -10,15 +9,13 @@ class FirebaseTestConfig(AppConfig):
     name = 'firebase_test'
 
     def ready(self):
-        # Initialize Firebase app only if it has not been initialized already        git add .
-
+        # Initialize Firebase app only if it has not been initialized already
         if not firebase_admin._apps:
             firebase_credentials = os.getenv('FIREBASE_ADMIN_CREDENTIALS')
             if firebase_credentials:
                 try:
                     cred = credentials.Certificate(json.loads(firebase_credentials))
                     initialize_app(cred)
-                    firebase_admin.initialize_app(cred)
                 except json.JSONDecodeError:
                     raise ValueError("FIREBASE_ADMIN_CREDENTIALS environment variable is not a valid JSON string")
             else:
