@@ -1,5 +1,3 @@
-Project Continued on Gitlab. https://gitlab.com/stenu92/
-
 # Whitepaper for the Classic Game of Snake
 
 ## Abstract
