@@ -11,8 +11,6 @@ class FirebaseTestConfig(AppConfig):
 
     def ready(self):
         # Initialize Firebase app only if it has not been initialized already        git add .
-        git commit -m "Update Firebase credentials handling"
-        git push heroku main
 
         if not firebase_admin._apps:
             firebase_credentials = os.getenv('FIREBASE_ADMIN_CREDENTIALS')
