@@ -1,8 +1,0 @@
-text, text
-
-my first pipeline job?
-next attempt
-
-i think my pipeline works to dockerhub
-
-dockerhub 2
