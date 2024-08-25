@@ -26,6 +26,10 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
+    - name: Recreate Firebase Admin SDK JSON file
+      run: |
+        echo "${{ secrets.FIREBASE_ADMIN_CREDENTIALS_PATH }}" > /home/runner/work/Snake2/Snake2/my-awesome-portfolio-pro-55988-firebase-adminsdk-vgp73-d698ccf7fd.json
+
     - name: Run tests
       run: |
         python manage.py test
